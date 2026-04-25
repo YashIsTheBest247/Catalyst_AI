@@ -8,7 +8,7 @@ Catalyst AI is an **AI-powered skill assessment and personalized learning platfo
 
 ## 🌐 Live Demo
 
-👉 **Live Link:** _[https://catalystaiplus.vercel.app/]_
+👉 **Live Link:** _[(https://catalystplus.vercel.app/)]_
 
 ---
 
