@@ -1,71 +1,191 @@
-# Catalyst AI — Standalone Backend
+# Catalyst AI
 
-A Node + Express server that mirrors the three Supabase Edge Functions used by the Catalyst AI frontend. Use this if you want to host the backend yourself instead of relying on Supabase Edge Functions.
+> **Real Skills. Real Plans.**
 
-> ℹ️ The frontend in this repo currently calls the Supabase Edge Functions in `supabase/functions/`. This standalone backend is a drop-in replacement for self-hosting (Render, Railway, Fly, a VPS, etc.). It is **not** required for the live preview to work.
+Catalyst AI is an **AI-powered skill assessment and personalized learning platform** that goes beyond resumes to evaluate real proficiency through adaptive, conversational interviews.
 
-## Endpoints
+---
 
-| Method | Path              | Purpose                                            |
-| ------ | ----------------- | -------------------------------------------------- |
-| GET    | `/health`         | Liveness check                                     |
-| POST   | `/extract-skills` | Extract & compare skills from JD + resume          |
-| POST   | `/chat-assess`    | Streaming conversational interviewer (SSE)         |
-| POST   | `/generate-plan`  | Score skills + generate phased learning plan       |
+## 🌐 Live Demo
 
-Request/response shapes match `supabase/functions/*/index.ts` exactly.
+👉 **Live Link:** _[https://catalystaiplus.vercel.app/]_
+
+---
+
+## Overview
+
+Traditional resumes only show what candidates *claim* to know.
+
+**Catalyst AI solves this by:**
+- Extracting skills from resumes & job descriptions
+- Identifying real skill gaps
+- Conducting an **adaptive AI interview**
+- Generating **data-driven scores**
+- Creating a **personalized learning roadmap**
+
+---
+
+## Core Features
+
+### 1. Flexible Input
+Users can:
+- Paste **Job Description (JD)**
+- Paste **Resume**
+- OR upload **PDF files** for both
+
+---
+
+### 2. Skill Extraction & Matching
+- Extracts structured skills from JD & resume
+- Compares required vs candidate skills
+- Categorizes into:
+  - Strong
+  - Moderate
+  - Critical
+
+---
+
+### 3. Gap Analysis
+- Identifies **critical skill gaps**
+- Provides reasoning behind mismatches
+- Highlights improvement areas
+
+---
+
+### 4. SkillLens AI (Assessment Bot)
+Inside Catalyst AI, **SkillLens AI** conducts:
+- Adaptive, conversational interviews
+- Skill-based questioning
+- Dynamic difficulty adjustment
+- Real-time evaluation of answers
+
+---
+
+### 5. Scoring & Insights
+- Overall readiness score
+- Per-skill scoring
+- Confidence evaluation
+- Visual analytics:
+  - Radar charts
+  - Bar graphs
+
+---
+
+### 6. Skill Breakdown
+Each skill is categorized into:
+- 🟢 Beginner
+- 🟡 Intermediate
+- 🔴 Advanced
+
+With:
+- Current level → Target level
+- Detailed feedback
+
+---
+
+### 7. Personalized Learning Plan
+- Step-by-step roadmap
+- Timeline-based phases
+- Focused skill improvement strategy
+
+---
+
+### 8. Pre-Skill Resources
+Curated resources for each skill:
+-  Videos
+-  Documentation
+-  Practice platforms
+-  Courses
+
+(All include direct links)
+
+---
+
+### 9. Downloadable Report
+- Full report export as **PDF**
+- Includes:
+  - Scores
+  - Graphs
+  - Gap analysis
+  - Learning plan
+
+---
+
+## Tech Stack
+
+### Frontend
+- React / Vite
+- Tailwind CSS
+- Recharts (Data Visualization)
+- Lucide Icons
+
+### Backend
+- Node.js (Express)
+- Supabase
+
+### AI Layer
+- Google Gemini API
+- OpenAI-compatible APIs
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint           | Description |
+|--------|------------------|------------|
+| GET    | `/health`         | Health check |
+| POST   | `/extract-skills` | Extract + compare skills |
+| POST   | `/chat-assess`    | AI interview (streaming) |
+| POST   | `/generate-plan`  | Score + learning roadmap |
+
+---
 
 ## Setup
 
+### 1️⃣ Clone repo
+
+```bash
+git clone https://github.com/YashIsTheBest247/Catalyst-AI.git
+cd CatalystAI
+```
+# Backend Setup
 ```bash
 cd backend
-cp .env.example .env     
+cp .env.example .env
 npm install
-npm run dev                 # http://localhost:8787
+npm run dev
 ```
 
-## Environment variables
-
-| Variable          | Required | Default                                                      |
-| ----------------- | -------- | ------------------------------------------------------------ |
-| `AI_MODEL`        | yes      | `google/gemini-3-flash-preview`                              |
-| `PORT`            | no       | `8787`                                                       |
-
-`AI_GATEWAY_URL` and `AI_MODEL` are OpenAI-compatible — point them at any provider that accepts the same chat-completions schema (OpenAI, OpenRouter, Groq, etc.).
-
-## Pointing the frontend at this backend
-
-The frontend currently calls Supabase Edge Functions via `supabase.functions.invoke(...)`. To use this server instead, replace those three call sites in `src/pages/Assess.tsx`, `src/pages/Chat.tsx`, and `src/pages/Dashboard.tsx` with `fetch` calls to your deployed URL, e.g.:
-
-```ts
-const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/extract-skills`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ jobDescription, resume }),
-});
-const data = await res.json();
+# Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-## Deploy
-
-Any Node 20+ host works. Example (Render):
-
-1. New Web Service → connect this repo, root directory `backend`.
-2. Build command: `npm install`
-3. Start command: `npm start`
-4. Add `GEMINI_API_KEY` as an environment variable.
-
-## Project layout
-
+## Environment Variables
+```bash
+GEMINI_API_KEY=
+OPENAI_API_KEY=
+AI_MODEL=google/gemini-3-flash-preview
+PORT=8787
 ```
+
+# Project Structure
+```bash 
+frontend/
+├── public/
+├── src/
+├── index.html
+
 backend/
+├── src/
+│   ├── server.js
+│   ├── aiClient.js
+│   └── routes/
+│       ├── extractSkills.js
+│       ├── chatAssess.js
+│       └── generatePlan.js
 ├── package.json
 ├── .env.example
-└── src/
-    ├── server.js          # Express app
-    ├── aiClient.js        # Shared AI gateway helper
-    └── routes/
-        ├── extractSkills.js
-        ├── chatAssess.js
-        └── generatePlan.js
 ```
