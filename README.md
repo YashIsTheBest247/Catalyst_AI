@@ -312,12 +312,12 @@ backend/
 Frontend (React / Next.js)
         │
         ▼
-API Gateway (FastAPI)
+    API Gateway
         │
  ┌──────┼───────────────┐
  ▼      ▼               ▼
-Auth   Assessment     Resume Parser
-Svc    Engine         (NLP/LLM)
+Seed   Assessment     Resume Parser
+       Engine         (NLP/LLM)
         │
         ▼
 Interview Engine (LLM Orchestrator)
@@ -329,9 +329,12 @@ Scoring Engine
 Learning Plan Generator
         │
         ▼
-Database Layer
-(PostgreSQL + Vector DB)
+   Database Layer
+(PostgreSQL-Suoabase)
         │
         ▼
 Analytics / Dashboard
+        │
+        ▼
+  Report Export
 ```
