@@ -145,7 +145,7 @@ Curated resources for each skill:
 ### 1️⃣ Clone repo
 
 ```bash
-git clone https://github.com/YashIsTheBest247/Catalyst-AI.git
+git clone https://github.com/YashIsTheBest247/Catalyst_AI.git
 cd CatalystAI
 ```
 # Backend Setup
@@ -193,7 +193,7 @@ backend/
 
 ---
 
-### 🧩 Scorring Logic
+### 🧩 Scoring Logic
 
 #### 1. Skill Match (40%)
 - JD vs Resume similarity  
