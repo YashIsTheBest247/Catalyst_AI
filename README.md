@@ -189,3 +189,149 @@ backend/
 ├── package.json
 ├── .env.example
 ```
+
+
+---
+
+### 🧩 Scorring Logic
+
+#### 1. Skill Match (40%)
+- JD vs Resume similarity  
+- Measures:
+  - Coverage of required skills  
+  - Relevance  
+
+---
+
+#### 2. Assessment Performance (40%)
+- Based on AI interview
+- Evaluates:
+  - Correctness  
+  - Depth  
+  - Problem-solving ability  
+
+---
+
+#### 3. Confidence (20%)
+- Communication clarity  
+- Answer structure  
+- Consistency  
+
+---
+
+### 📈 Skill-Level Classification
+
+| Score Range | Level        |
+|------------|-------------|
+| 0–40       | Beginner     |
+| 40–70      | Intermediate |
+| 70–100     | Advanced     |
+
+---
+
+
+---
+
+### ⚙️ Architecture Overview
+
+- **Frontend (React + TypeScript)**
+  - Handles user interaction (JD input, resume upload, AI interview UI)
+  - Uses streaming (SSE/WebSockets) for real-time responses
+
+- **API Gateway (Node.js + Express)**
+  - Central entry point for all client requests
+  - Handles routing, validation, and authentication
+
+- **Auth Service**
+  - Manages user sessions and access control
+
+- **Resume Parser**
+  - Extracts structured data (skills, experience) using NLP + LLM
+
+- **Assessment Engine**
+  - Compares Job Description vs Resume
+  - Identifies skill matches and gaps
+
+- **Interview Engine (SkillLens AI)**
+  - Conducts adaptive AI interviews
+  - Dynamically adjusts question difficulty
+
+- **AI Model Gateway**
+  - OpenAI-compatible interface
+  - Config:
+    ```
+    AI_MODEL=google/gemini-3-flash-preview
+    ```
+  - Handles prompt orchestration and responses
+
+- **Scoring Engine**
+  - Computes multi-factor evaluation scores
+  - Aggregates interview + skill data
+
+- **Learning Plan Generator**
+  - Creates personalized improvement roadmap
+  - Suggests resources and timelines
+
+- **Database Layer**
+  - PostgreSQL → structured data (users, scores, reports)
+
+- **Analytics / Dashboard**
+  - Visualizes:
+    - Skill scores
+    - Progress
+    - Weak areas
+
+---
+
+### Data Flow
+
+1. User submits JD + Resume  
+2. Resume Parser extracts skills  
+3. Assessment Engine compares JD vs Resume  
+4. Interview Engine conducts AI-based assessment  
+5. AI responses processed via Model Gateway  
+6. Scoring Engine computes final scores  
+7. Learning Plan Generator builds roadmap  
+8. Results stored in Database  
+9. Dashboard displays analytics  
+
+---
+
+### Key Design Principles
+
+- **Modular Services** → Easy to scale and maintain  
+- **AI-First Design** → LLM-driven evaluation pipeline  
+- **Real-Time Interaction** → Streaming interview experience  
+- **Extensible** → Plug-and-play AI models and services  
+- **Data-Driven** → Objective scoring & analytics  
+
+---
+
+# System Architecture
+```bash
+Frontend (React / Next.js)
+        │
+        ▼
+API Gateway (FastAPI)
+        │
+ ┌──────┼───────────────┐
+ ▼      ▼               ▼
+Auth   Assessment     Resume Parser
+Svc    Engine         (NLP/LLM)
+        │
+        ▼
+Interview Engine (LLM Orchestrator)
+        │
+        ▼
+Scoring Engine
+        │
+        ▼
+Learning Plan Generator
+        │
+        ▼
+Database Layer
+(PostgreSQL + Vector DB)
+        │
+        ▼
+Analytics / Dashboard
+```
