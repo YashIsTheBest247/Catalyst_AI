@@ -6,6 +6,12 @@ Catalyst AI is an **AI-powered skill assessment and personalized learning platfo
 
 ---
 
+## Why Catalyst AI?
+
+Traditional hiring relies heavily on resumes, which often fail to reflect a candidate’s true abilities. This leads to inconsistent evaluations, biased decision-making, and inefficient hiring processes. Catalyst AI addresses this gap by combining intelligent skill extraction, adaptive AI-driven interviews, and data-backed scoring to measure real proficiency instead of claimed experience. It provides a standardized, objective, and scalable way to assess candidates while also offering personalized learning paths, helping both recruiters make better decisions and candidates understand and improve their actual skills.
+
+---
+
 ## 🌐 Live 
 
 👉 **Live Link:** _[(https://catalystplus.vercel.app/)]_\
@@ -244,7 +250,26 @@ else:
 maintain level
 ```
 ---
-
+### Skill Match Score (0-100)
+```bash
+Skill Match Score = Σ (Skill_i_weight × Skill_i_match) / Σ (Skill_i_weight) × 100
+```
+---
+### Assessment Score (0-100) (Per answer)
+```bash
+Answer Score = (Correctness × 0.5) +(Depth × 0.3) +(Relevance × 0.2)
+```
+---
+### Aggregation
+```bash
+Assessment Score = (Σ Answer Scores / Number of Questions) × 100
+```
+---
+### Confidence Score (0-100)
+```bash
+Confidence Score = (Clarity × 0.4) + (Structure × 0.3) + (Consistency × 0.3)
+```
+---
 ### ⚙️ Architecture Overview
 
 - **Frontend (React + TypeScript)**
