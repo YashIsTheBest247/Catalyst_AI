@@ -365,7 +365,7 @@ Learning Plan Generator
         │
         ▼
    Database Layer
-(PostgreSQL-Suoabase)
+(PostgreSQL-Supabase)
         │
         ▼
 Analytics / Dashboard
