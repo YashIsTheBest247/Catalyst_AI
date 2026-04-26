@@ -228,8 +228,20 @@ backend/
 | 70–100     | Advanced     |
 
 ---
-
-
+### Final Score
+```bash
+Final Score =(Skill Match × 0.4) +(Assessment Performance × 0.4) +(Confidence × 0.2)
+```
+---
+### Adaptive Interview
+```bash
+if answer_score > 0.8:
+increase difficulty
+elif answer_score < 0.4:
+decrease difficulty
+else:
+maintain level
+```
 ---
 
 ### ⚙️ Architecture Overview
