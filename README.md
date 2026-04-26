@@ -280,9 +280,6 @@ Confidence Score = (Clarity × 0.4) + (Structure × 0.3) + (Consistency × 0.3)
   - Central entry point for all client requests
   - Handles routing, validation, and authentication
 
-- **Auth Service**
-  - Manages user sessions and access control
-
 - **Resume Parser**
   - Extracts structured data (skills, experience) using NLP + LLM
 
@@ -311,7 +308,7 @@ Confidence Score = (Clarity × 0.4) + (Structure × 0.3) + (Consistency × 0.3)
   - Suggests resources and timelines
 
 - **Database Layer**
-  - PostgreSQL → structured data (users, scores, reports)
+  - PostgreSQL → structured data (scores, reports)
 
 - **Analytics / Dashboard**
   - Visualizes:
